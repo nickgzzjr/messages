@@ -8,11 +8,11 @@ When I discovered Meteor, I had been working with AngularJS, a very powerful web
 
 Research
 --------
-I did my research first, of course. I found a github repo ngMeteor, whom claim, and I quote, “The simplest no-conflict way to use AngularJS with Meteor, Meteorite and Atmosphere Smart Packages.” but as soon as I kept reading, I read the heading, “New Data-Binding to avoid conflict” with Handlebars, ngMeteor changed the default AngularJS data bindings from {{foo}} to [[foo]]. Wait a minute, does this mean that I cannot reuse any of my old AngularJS code?!? Sure enough, you have to use their “Module Injection” methods or make “ngMeteor module smart packages”.  This was not what I was looking for.
+I did my research first, of course. I found a github repo ngMeteor (https://github.com/loneleeandroo/ngMeteor/), whom claim, and I quote, “The simplest no-conflict way to use AngularJS with Meteor, Meteorite and Atmosphere Smart Packages.” but as soon as I kept reading, I read the heading, “New Data-Binding to avoid conflict” with Handlebars, ngMeteor changed the default AngularJS data bindings from {{foo}} to [[foo]]. Wait a minute, does this mean that I cannot reuse any of my old AngularJS code?!? Sure enough, you have to use their “Module Injection” methods or make “ngMeteor module smart packages”.  This was not what I was looking for.
 
-So I kept doing my research and I found a blog, “The Wonderful Duo” by Zefei Xuan. In my opinion, this guy was up to something, but it wasn’t quite what I was looking for. A folly intricate template solution, and just too many “headaches and hiccups”. I had to come up with something easier and simpler.
+So I kept doing my research and I found a blog, “The Wonderful Duo” by Zefei Xuan (https://medium.com/@zfxuan/the-wonderful-duo-using-meteor-and-angularjs-together-4d603a4651bf). In my opinion, this guy was up to something, but it wasn’t quite what I was looking for. A folly intricate template solution, and just too many “headaches and hiccups”. I had to come up with something easier and simpler.
 
-Then I found ng-meteor, which integrates Meteor and AngularJS pretty well, but it uses blade and I’m not too familiar with it, and it also means I can not drop my old AngularJS code.
+Then I found ng-meteor (https://github.com/olanod/ng-meteor/), which integrates Meteor and AngularJS pretty well, but it uses blade and I’m not too familiar with it, and it also means I can not drop my old AngularJS code.
 
 These solutions I found work to an extend, but they just seem a little too complicated and conflicting. I also noticed Meteor loads all javascripts and all templates at load time, which to me is not web application calibre. We need to be able to enable asynchronous (on-demand) loading.
 
