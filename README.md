@@ -1,5 +1,7 @@
-Messages a la Ngeteor
-========-------------
+Messages
+========
+ala Ngeteor
+-----------
 Recently, I discovered Meteor, a full-stack javascript framework (out of the box templating system, schema-less database to DOM synchronization, and not to mention websockets) with the ability to produce high quality apps in no time. The perfect tool for a beginner developer to pick up! To prove it, I saw two of my apprentices create beautiful websites in no time. (http://eddygzz9.meteor.com/)  As I did more and more research on Meteor, I discovered the amazing and powerful potential it beholds. At the moment, Meteor has not reached its 1.0 but to me it feels complete nonetheless. 
 
 When I discovered Meteor, I had been working with AngularJS, a very powerful web application framework that makes declarative templating and databinding seamless. So I thought, why not COMBINE them! This was the birth of a new monster.
