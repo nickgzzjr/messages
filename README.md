@@ -28,13 +28,13 @@ Start by making a Meteor project, easy indeed.
 
     meteor create myapp
 
-This created a folder named myapp, and inside this folder add a client, public, and server folder. Also delete myapp.css and myapp.js, as there is no need for them, 
+This created a folder named myapp, and inside this folder add a `client`, `public`, and `server` folder. Also delete `myapp.css` and `myapp.js`, as there is no need for them, 
 
     cd myapp
     mkdir client public server
     rm myapp.css myapp.js
 
-and edit myapp.html, only needs a div with a ui-view directive to inject the AngularJS app.
+and edit `myapp.html`, only needs a div with a ui-view directive to inject the AngularJS app.
 
     <head>
       <title>myapp</title>
@@ -44,12 +44,12 @@ and edit myapp.html, only needs a div with a ui-view directive to inject the Ang
       <div ui-view class="container-fluid"></div>
     </body>
 
-The content inside both the client and server folders get loaded automatically by Meteor (anything inside the server folder is inaccessible by the client, of course) whereas the content inside the public (and private) folder does not get loaded. With this in mind, drop AngularJS in the public folder for the asynchronous loading to happen (by doing so it makes it easy to remove the app from Meteor or import an old app). To efficiently get AngularJS, angularAMD, and AngularUI Router inside the public folder, configure bower by creating a file .bowerrc inside the public folder.
+The content inside both the `client` and `server` folders get loaded automatically by Meteor (anything inside the `server` folder is inaccessible by the client, of course) whereas the content inside the `public` (and `private`) folder does not get loaded. With this in mind, drop AngularJS in the `public` folder for the asynchronous loading to happen (by doing so it makes it easy to remove the app from Meteor or import an old app). To efficiently get AngularJS, angularAMD, and AngularUI Router inside the `public` folder, configure bower by creating a file `.bowerrc` inside the `public` folder.
 
     cd public
     nano .bowerrc
 
-Pasting the following content that specifies the name of the directory to install bower components. I personally liked lib. 
+Pasting the following content that specifies the name of the directory to install bower components. I personally liked `lib`. 
 
     {
         "directory" : "lib"
@@ -59,7 +59,7 @@ Install angularAMD and AngularUI Router. This includes AngularJS.
 
     bower install angularAMD angular-ui-router
 
-Create app.js in the public folder, inside is the app router, an autorun factory by Zefei Xuan, and the angularAMD bootstrap. 
+Create `app.js` in the `public` folder, inside is the app router, an autorun factory by Zefei Xuan, and the angularAMD bootstrap. 
 
     define(['angularAMD','uiRouter'], function(angularAMD) {
         var app = angular.module('app', ['ui.router'])
@@ -95,12 +95,12 @@ Create app.js in the public folder, inside is the app router, an autorun factory
         return app;
     });
 
-Make a home folder for the home page.
+Make a `home` folder for the home page.
  
     mkdir home
     cd home
 
-Make an index.html, in here notice the ng-repeat, ng-submit, ng-model and the {{message.text}}.
+Make an `index.html`, in here notice the `ng-repeat`, `ng-submit`, `ng-model` and the `{{message.text}}`.
 
     <div class="page-header">
         <h1>Messages</h1>
@@ -117,7 +117,7 @@ Make an index.html, in here notice the ng-repeat, ng-submit, ng-model and the {{
         </div>
     </form>
 
-Now, create another app.js. This is the home page controller where AngularJS and Meteor bind.
+Now, create another `app.js`. This is the home page controller where AngularJS and Meteor bind.
 
     define(['app'], function(app) {
         // Declare Meteor Collection client side
@@ -152,7 +152,7 @@ Now, create another app.js. This is the home page controller where AngularJS and
     });
       
 
-Move on to the client folder and create a compatibility folder which is specifically used for 3rd party JS libraries that export a global symbol. Drop RequireJS in here.
+Move on to the `client` folder and create a `compatibility` folder which is specifically used for 3rd party JS libraries that export a global symbol. Drop RequireJS in here.
 
     cd ../../../client
     mkdir compatibility
@@ -162,7 +162,7 @@ Move on to the client folder and create a compatibility folder which is specific
 
 For the latest version of RequireJS, visit http://requirejs.org/docs/download.html.
 
-Back in the client folder, create main.js, with the content below. This is the starting point for any RequireJS app. Used to define components and their dependencies. 
+Back in the `client` folder, create `main.js`, with the content below. This is the starting point for any RequireJS app. Used to define components and their dependencies. 
 
     require.config({
         paths: {
@@ -177,12 +177,12 @@ Back in the client folder, create main.js, with the content below. This is the s
         deps: ['app']
     });
 
-Inside server folder make an app.js to let the client write into the database.
+Inside `server` folder make an `app.js` to let the client write into the database.
 
     // Declare Meteor Collection server side
     Events = new Meteor.Collection('messages');
 
-Run meteor in myapp.
+Run meteor from `myapp` folder.
 
     meteor
 
@@ -195,7 +195,7 @@ and Vuala!
 
 Conclusion
 ----------
-I thought about adding AngularJS, AngularAMD and AngularUI Router inside the client folder to get them loaded by Meteor automatically but then I realized I would have dependencies issues, since AngularAMD and AngularUI Router both depend on AngularJS to be loaded first. Sure there is a few Meteor Require plugins that can handle the dependencies but it might be too much work, and to only get rid of the main.js file, I’d rather keep my main.js and use it to asynchronously load AngularJS plugins, for explicit pages. 
+I thought about adding AngularJS, AngularAMD and AngularUI Router inside the `client` folder to get them loaded by Meteor automatically but then I realized I would have dependencies issues, since AngularAMD and AngularUI Router both depend on AngularJS to be loaded first. Sure there is a few Meteor Require plugins that can handle the dependencies but it might be too much work, and to only get rid of the `main.js` file, I’d rather keep my `main.js` and use it to asynchronously load AngularJS plugins, for explicit pages. 
 
 On my next blog, I would like to show how to integrate more pages using the AngularUI Router as well as Meteor account integration.
 
