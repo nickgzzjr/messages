@@ -1,9 +1,14 @@
 Messages
 ========
-ala Ngeteor
------------
+**NGeteor Style**
+-----------------
+
+Meteor
+------
 Recently, I discovered Meteor, a full-stack javascript framework (out of the box templating system, schema-less database to DOM synchronization, and not to mention websockets) with the ability to produce high quality apps in no time. The perfect tool for a beginner developer to pick up! To prove it, I saw two of my apprentices create beautiful websites in no time. (http://eddygzz9.meteor.com/)  As I did more and more research on Meteor, I discovered the amazing and powerful potential it beholds. At the moment, Meteor has not reached its 1.0 but to me it feels complete nonetheless. 
 
+AngularJS
+---------
 When I discovered Meteor, I had been working with AngularJS, a very powerful web application framework that makes declarative templating and databinding seamless. So I thought, why not COMBINE them! This was the birth of a new monster.
 
 Research
@@ -18,7 +23,7 @@ These solutions I found work to an extend, but they just seem a little too compl
 
 Solution
 --------
-With the help of angularAMD, a “utility to facilitate the use of RequireJS in AngularJS applications supporting on-demand loading”, RequireJS (duh), and the AngularUI Router I was able to come up with a clean solution. With this solution AngularJS runs completely separate but on top of Meteor. It uses Meteor’s global variables to replace the typical AngularJS RESTful clients (lower-level $http, and higher-level $resource) and there is a bonus, websockets! Two birds with one stone.
+With the help of angularAMD, a “utility to facilitate the use of RequireJS in AngularJS applications supporting on-demand loading”, RequireJS (duh), and the AngularUI Router I was able to come up with a clean solution. With this solution AngularJS runs completely separate but on top of Meteor. It uses Meteor’s global variables and replaces the typical AngularJS RESTful clients (lower-level `$http`, or higher-level `$resource`) plus there is a bonus, websockets! Two birds with one stone.
 
 Tutorial
 --------
@@ -28,13 +33,13 @@ Start by making a Meteor project, easy indeed.
 
     meteor create myapp
 
-This created a folder named myapp, and inside this folder add a `client`, `public`, and `server` folder. Also delete `myapp.css` and `myapp.js`, as there is no need for them, 
+This created a folder named myapp, and inside this folder add a `client`, `public`, and `server` folder. Also delete `myapp.css` and `myapp.js`, as there is no need for them. 
 
     cd myapp
     mkdir client public server
     rm myapp.css myapp.js
 
-and edit `myapp.html`, only needs a div with a ui-view directive to inject the AngularJS app.
+Edit `myapp.html`, only needs a div with a ui-view directive to inject the AngularJS app.
 
     <head>
       <title>myapp</title>
@@ -49,7 +54,9 @@ The content inside both the `client` and `server` folders get loaded automatical
     cd public
     nano .bowerrc
 
-Pasting the following content that specifies the name of the directory to install bower components. I personally liked `lib`. 
+Note nano is a Terminal application used to edit text files in a simple and familiar manner. 
+
+Use your favorite code editor to add the following content. Specifies the name of the directory to install bower components, in this case `lib`.
 
     {
         "directory" : "lib"
@@ -59,7 +66,7 @@ Install angularAMD and AngularUI Router. This includes AngularJS.
 
     bower install angularAMD angular-ui-router
 
-Create `app.js` in the `public` folder, inside is the app router, an autorun factory by Zefei Xuan, and the angularAMD bootstrap. 
+Create `app.js` in the `public` folder. Inside is the app router, an autorun factory by Zefei Xuan, and the angularAMD bootstrap. 
 
     define(['angularAMD','uiRouter'], function(angularAMD) {
         var app = angular.module('app', ['ui.router'])
@@ -152,7 +159,7 @@ Now, create another `app.js`. This is the home page controller where AngularJS a
     });
       
 
-Move on to the `client` folder and create a `compatibility` folder which is specifically used for 3rd party JS libraries that export a global symbol. Drop RequireJS in here.
+Remembering that Meteor automatically loads the content inside the `client` folder, move to the `client` folder and create a `compatibility` folder which is specifically used for 3rd party JS libraries that export a global symbol. Drop RequireJS in here.
 
     cd ../../../client
     mkdir compatibility
@@ -162,7 +169,8 @@ Move on to the `client` folder and create a `compatibility` folder which is spec
 
 For the latest version of RequireJS, visit http://requirejs.org/docs/download.html.
 
-Back in the `client` folder, create `main.js`, with the content below. This is the starting point for any RequireJS app. Used to define components and their dependencies. 
+Back in the `client` folder, create `main.js`, with the content below. This is the starting point for any RequireJS app. Used to define components and their dependencies.
+The cool part is that Meteor loads this file automatically to kick off the AngularJS app. 
 
     require.config({
         paths: {
@@ -199,4 +207,4 @@ I thought about adding AngularJS, AngularAMD and AngularUI Router inside the `cl
 
 On my next blog, I would like to show how to integrate more pages using the AngularUI Router as well as Meteor account integration.
 
-Also feel free to checkout my AngularJS and Meteor work in progress http://ngeteor.meteor.com/#/, with accounts and calendar integration.
+Also feel free to checkout my AngularJS and Meteor work in progress http://ngeteor.meteor.com/#/, with accounts and a working calendar.
