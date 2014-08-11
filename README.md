@@ -5,29 +5,31 @@ Messages
 
 Meteor
 ------
-Recently, I discovered Meteor, a full-stack javascript framework (out of the box templating system, schema-less database to DOM synchronization, and not to mention websockets) with the ability to produce high quality apps in no time. The perfect tool for a beginner developer to pick up! To prove it, I saw two of my apprentices create beautiful websites in no time. (http://eddygzz9.meteor.com/)  As I did more and more research on Meteor, I discovered the amazing and powerful potential it beholds. At the moment, Meteor has not reached its 1.0 but to me it feels complete nonetheless. 
+Recently, I discovered Meteor, a full-stack javascript framework (out of the box templating system, schema-less database to DOM synchronization, and not to mention websockets) with the ability to produce high quality applications in no time. The perfect tool for a beginner developer to pick up!  Meteor makes it simple to set up, and quickly get it up and running. There is no need to import your Javascript or CSS because it will do it automatically for you and plus most Javascript plugins can be found on Atmosphere, a place to explore Meteor packages. To prove how easy it is, I saw my apprentice, create a beautiful website in 2 - 3 days with zero web development skills and only a background in graphic design. (Check it out here - http://eddygzz9.meteor.com/)  Just create a new Meteor project, install needed packages, develop it, and run it. Whereas other frameworks require specific setup, and usually require tools like grunt to compile, auto-reload, and serve your application. There is no need for boilerplates, or Yeoman. With Meteor, life is simple. As I did more and more research on Meteor, I discovered the amazing and powerful potential it beholds. It is the perfect tool for prototyping. Meteor combines both frontend and backend in one place, with minimal effort. Currently, Meteor has not reached 1.0 but with its integrated accounts and security Meteor can be used to create a production application.
 
 AngularJS
 ---------
-When I discovered Meteor, I had been working with AngularJS, a very powerful web application framework that makes declarative templating and databinding seamless. So I thought, why not COMBINE them! This was the birth of a new monster.
+When I discovered Meteor, I had been working with AngularJS, a very powerful web application framework that makes declarative templating and databinding seamless. So I thought, why not COMBINE them! Together, I can use all of Meteor’s backend framework, that has accounts, a schema-less database and websockets, with AngularJS templating and databinding to augment or even replace Meteor’s primitive templating system.  By using Meteor’s backend framework, there would be no need to worry about building a RESTful API, defining specific URLs or even an envelope structure, all I have to do is send a Javascript Object. Meteor’s templating system is based on Handlebars and does not support declaratives or automatic data-binding like AngularJS does. Combining them is the birth of a new monster.
+
+I also noticed Meteor loads all javascripts and all templates at load time, which to me is not web application calibre. We need to be able to enable asynchronous (on-demand) loading. Therefore we need AMD (Asynchronous Module Definition) which is appropriate for modern browser environments to improve performance and load times.
 
 Research
 --------
-I did my research first, of course. I found a github repo ngMeteor (https://github.com/loneleeandroo/ngMeteor/), whom claim, and I quote, “The simplest no-conflict way to use AngularJS with Meteor, Meteorite and Atmosphere Smart Packages.” but as soon as I kept reading, I read the heading, “New Data-Binding to avoid conflict” with Handlebars, ngMeteor changed the default AngularJS data bindings from {{foo}} to [[foo]]. Wait a minute, does this mean that I cannot reuse any of my old AngularJS code?!? Sure enough, you have to use their “Module Injection” methods or make “ngMeteor module smart packages”.  This was not what I was looking for.
+I did my research first, of course. I found a github repo ngMeteor (https://github.com/loneleeandroo/ngMeteor/), who claims, and I quote, “The simplest no-conflict way to use AngularJS with Meteor, Meteorite and Atmosphere Smart Packages.” but as soon as I kept reading, I read the heading, “New Data-Binding to avoid conflict” with Handlebars, ngMeteor changed the default AngularJS data bindings from {{foo}} to [[foo]]. Wait a minute, does this mean that I cannot reuse any of my old AngularJS code?!? Sure enough, you have to use their “Module Injection” methods or make “ngMeteor module smart packages”.  This was not what I was looking for.
 
-So I kept doing my research and I found a blog, “The Wonderful Duo” by Zefei Xuan (https://medium.com/@zfxuan/the-wonderful-duo-using-meteor-and-angularjs-together-4d603a4651bf). In my opinion, this guy was up to something, but it wasn’t quite what I was looking for. A folly intricate template solution, and just too many “headaches and hiccups”. I had to come up with something easier and simpler.
+So I kept doing my research and I found a blog, “The Wonderful Duo” (https://medium.com/@zfxuan/the-wonderful-duo-using-meteor-and-angularjs-together-4d603a4651bf) by Zefei Xuan. In my opinion, this guy was up to something, but it wasn’t quite what I was looking for. A folly intricate template solution, and just too many “headaches and hiccups”. I had to come up with something easier and simpler. Something that did not require me to worry about loading orders or problems with bootstrapping AngularJS.
 
-Then I found ng-meteor (https://github.com/olanod/ng-meteor/), which integrates Meteor and AngularJS pretty well, but it uses blade and I’m not too familiar with it, and it also means I can not drop my old AngularJS code.
+Then I found ng-meteor (https://github.com/olanod/ng-meteor/),  which integrates Meteor and AngularJS pretty well, but it uses blade and I’m not too familiar with it. It also means I can not drop my old AngularJS code. This is a no go.
 
-These solutions I found work to an extend, but they just seem a little too complicated and conflicting. I also noticed Meteor loads all javascripts and all templates at load time, which to me is not web application calibre. We need to be able to enable asynchronous (on-demand) loading.
+The solutions I found work to an extent, but they just seem a little too complicated and conflicting.
 
 Solution
 --------
-With the help of angularAMD, a “utility to facilitate the use of RequireJS in AngularJS applications supporting on-demand loading”, RequireJS (duh), and the AngularUI Router I was able to come up with a clean solution. With this solution AngularJS runs completely separate but on top of Meteor. It uses Meteor’s global variables and replaces the typical AngularJS RESTful clients (lower-level `$http`, or higher-level `$resource`) plus there is a bonus, websockets! Two birds with one stone.
+I was able to come up with a clean solution with the help of angularAMD, a “utility to facilitate the use of RequireJS in AngularJS applications supporting on-demand loading”, RequireJS (duh), and the AngularUI Router. In this solution AngularJS runs completely separate but on top of Meteor. It uses Meteor’s global variables to replace typical AngularJS RESTful clients (lower-level `$http`, and higher-level `$resource`), doing so, has an immediate bonus, websockets! Two birds with one stone.
 
 Tutorial
 --------
-A simple messaging system, similar to a chat, forsay. 
+A simple messaging system, similar to a chat. 
 
 Start by making a Meteor project, easy indeed.
 
@@ -196,15 +198,15 @@ Run meteor from `myapp` folder.
 
 Make things pretty.
 
-    mtr install bootstrap-3
+    mtr add bootstrap-3
     meteor
 
 and Vuala!
 
 Conclusion
 ----------
-I thought about adding AngularJS, AngularAMD and AngularUI Router inside the `client` folder to get them loaded by Meteor automatically but then I realized I would have dependencies issues, since AngularAMD and AngularUI Router both depend on AngularJS to be loaded first. Sure there is a few Meteor Require plugins that can handle the dependencies but it might be too much work, and to only get rid of the `main.js` file, I’d rather keep my `main.js` and use it to asynchronously load AngularJS plugins, for explicit pages. 
+I thought about adding AngularJS, AngularAMD and AngularUI Router inside the `client` folder to get them loaded by Meteor automatically but then I realized I would have dependencies issues, since AngularAMD and AngularUI Router both depend on AngularJS to be loaded first. Sure there is a few Meteor Require plugins that can handle the dependencies but it might be too much work, and only to get rid of the `main.js` file, I’d rather keep my `main.js` and use it to asynchronously load AngularJS plugins, for explicit pages. 
 
-On my next blog, I would like to show how to integrate more pages using the AngularUI Router as well as Meteor account integration.
+On my next blog, I would like to show how to integrate more pages using the AngularUI Router as well as some Meteor account integration.
 
-Also feel free to checkout my AngularJS and Meteor work in progress http://ngeteor.meteor.com/#/, with accounts and a working calendar.
+Feel free to checkout **NGeteor** my AngularJS and Meteor work in progress http://ngeteor.meteor.com/#/, with accounts and a working calendar.
